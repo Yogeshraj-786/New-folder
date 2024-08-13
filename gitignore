@@ -1,0 +1,59 @@
+# Inventory Management Program
+
+# Initialize an empty dictionary to store inventory
+inventory = {}
+
+def add_stock():
+    product_name = input("Enter product name: ")
+    quantity = int(input("Enter quantity: "))
+    inventory[product_name] = quantity
+    print(f"Added {quantity} units of {product_name} to inventory.")
+
+def remove_stock():
+    product_name = input("Enter product name: ")
+    if product_name in inventory:
+        quantity = int(input("Enter quantity to remove: "))
+        if quantity <= inventory[product_name]:
+            inventory[product_name] -= quantity
+            print(f"Removed {quantity} units of {product_name} from inventory.")
+        else:
+            print("Not enough stock to remove.")
+    else:
+        print("Product not found in inventory.")
+
+def update_stock():
+    product_name = input("Enter product name: ")
+    if product_name in inventory:
+        new_quantity = int(input("Enter new quantity: "))
+        inventory[product_name] = new_quantity
+        print(f"Updated {product_name} quantity to {new_quantity}.")
+    else:
+        print("Product not found in inventory.")
+
+def view_inventory():
+    print("Current Inventory:")
+    for product, quantity in inventory.items():
+        print(f"{product}: {quantity} units")
+
+while True:
+    print("\nInventory Management Menu:")
+    print("1. Add Stock")
+    print("2. Remove Stock")
+    print("3. Update Stock")
+    print("4. View Inventory")
+    print("5. Exit")
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        add_stock()
+    elif choice == "2":
+        remove_stock()
+    elif choice == "3":
+        update_stock()
+    elif choice == "4":
+        view_inventory()
+    elif choice == "5":
+        print("Goodbye!")
+        break
+    else:
+        print("Invalid choice. Please try again.")
